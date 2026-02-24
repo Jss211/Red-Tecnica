@@ -9,30 +9,42 @@
     android:padding="32dp"
     android:background="#F5F7FA">
 
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/logo"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="Logo FixZone"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Red Técnica"
-        android:textSize="26sp"
+        android:text="FixZone"
+        android:textSize="34sp"
         android:textStyle="bold"
         android:textColor="#0D47A1"
-        android:layout_marginBottom="40dp"/>
+        android:layout_marginBottom="50dp"/>
 
-    <EditText
-        android:id="@+id/etEmail"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Correo electrónico"
-        android:textColor="#000000"
-        android:textColorHint="#000000"
-        android:inputType="textEmailAddress"
-        android:background="@android:drawable/edit_text"
-        android:padding="12dp"/>
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Correo electrónico"
+            android:inputType="textEmailAddress"
+            android:padding="12dp"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:endIconMode="password_toggle">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -40,29 +52,33 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Contraseña"
-            android:textColor="#000000"
-            android:textColorHint="#000000"
             android:inputType="textPassword"
             android:padding="12dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="220dp"
+        android:layout_height="56dp"
         android:text="Iniciar Sesión"
-        android:backgroundTint="#D32F2F"
         android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:backgroundTint="#D32F2F"
+        app:cornerRadius="28dp"
+        app:elevation="4dp"
         android:layout_marginTop="24dp"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnRegister"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="220dp"
+        android:layout_height="56dp"
         android:text="Crear Cuenta"
-        android:backgroundTint="#000000"
         android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:backgroundTint="#000000"
+        app:cornerRadius="28dp"
+        app:elevation="4dp"
         android:layout_marginTop="12dp"/>
 
 </LinearLayout>
