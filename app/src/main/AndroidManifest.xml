@@ -10,9 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RedTecnica">
         <activity
-            android:name=".RegisterActivity"
+            android:name=".DetalleServicioActivity"
             android:exported="false" />
-        <!-- Pantalla principal -->
+        <activity
+            android:name=".PerfilActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HistorialActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" /> <!-- Pantalla principal -->
         <activity
             android:name=".LoginActivity"
             android:exported="true">
