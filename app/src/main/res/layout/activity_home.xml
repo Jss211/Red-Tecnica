@@ -171,10 +171,10 @@
                     android:orientation="horizontal">
 
                     <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/btnGasfiteria"
+                        android:id="@+id/btnGasfitero"
                         android:layout_width="wrap_content" android:layout_height="46dp" android:layout_marginHorizontal="6dp" app:cardBackgroundColor="@color/white" app:cardCornerRadius="23dp" app:cardElevation="4dp" app:strokeWidth="0dp">
                         <LinearLayout android:layout_width="wrap_content" android:layout_height="match_parent" android:gravity="center_vertical" android:paddingHorizontal="16dp">
-                            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/gasfiteria"/>
+                            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/gasfitero"/>
                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="Gasfitería" android:textColor="@color/black" android:textStyle="bold"/>
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
@@ -183,7 +183,7 @@
                         android:id="@+id/btnElectricidad"
                         android:layout_width="wrap_content" android:layout_height="46dp" android:layout_marginHorizontal="6dp" app:cardBackgroundColor="@color/white" app:cardCornerRadius="23dp" app:cardElevation="4dp" app:strokeWidth="0dp">
                         <LinearLayout android:layout_width="wrap_content" android:layout_height="match_parent" android:gravity="center_vertical" android:paddingHorizontal="16dp">
-                            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/electricidad"/>
+                            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/electricista"/>
                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="Electricidad" android:textColor="@color/black" android:textStyle="bold"/>
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
