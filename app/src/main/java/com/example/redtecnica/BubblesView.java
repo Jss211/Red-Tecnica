@@ -33,7 +33,7 @@ public class BubblesView extends View {
             b.update(getWidth(), getHeight());
             canvas.drawCircle(b.x, b.y, b.radius, paint);
         }
-        invalidate(); // Esto crea el bucle de animación
+        invalidate(); // Esto creará el bucle de animación
     }
 
     private class Bubble {
