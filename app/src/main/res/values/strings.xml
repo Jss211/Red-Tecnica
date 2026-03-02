@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Red Tecnica</string>
+    <string name="app_name">FixZone</string>
+    <string name="default_web_client_id">767461452125-k2ckalq3clkqpftuscf808ftqrdbqeja.apps.googleusercontent.com</string>
 </resources>

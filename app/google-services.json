@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "767461452125",
+    "project_id": "fixzoneapp-92d7d",
+    "storage_bucket": "fixzoneapp-92d7d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:767461452125:android:5a2ff08a2eacf70c0220b4",
+        "android_client_info": {
+          "package_name": "com.example.redtecnica"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "767461452125-k2ckalq3clkqpftuscf808ftqrdbqeja.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCI_BqJ1cVUQ_fVkFMhD0AKpf5ORy7UUTs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "767461452125-k2ckalq3clkqpftuscf808ftqrdbqeja.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
