@@ -2,7 +2,6 @@ package com.example.redtecnica;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.redtecnica.databinding.ActivityDetalleServicioBinding;
 
@@ -23,21 +22,28 @@ public class DetalleServicioActivity extends AppCompatActivity {
         // 2. CONFIGURAR VISTA
         binding.tvDetailName.setText(nombre != null ? nombre : "Especialista");
 
-        // Ajustar imagen según quién sea
+        // Ajustar imagen y texto de especialidad según quién sea
         if ("gasfitero".equals(imagenKey)) {
             binding.ivServiceDetail.setImageResource(R.drawable.gasfitero);
             binding.tvDetailSpec.setText("Gasfitería Profesional");
+        } else if ("cerrajeria".equals(imagenKey)) {
+            binding.ivServiceDetail.setImageResource(R.drawable.cerrajeria);
+            binding.tvDetailSpec.setText("Cerrajería Profesional");
+        } else if ("pintura".equals(imagenKey)) {
+            binding.ivServiceDetail.setImageResource(R.drawable.pintura);
+            binding.tvDetailSpec.setText("Instalador de Drywall");
         } else {
             binding.ivServiceDetail.setImageResource(R.drawable.electricista);
             binding.tvDetailSpec.setText("Electricidad Certificada");
         }
 
-        // 3. BOTÓN DE ACCIÓN
+        // 3. BOTÓN DE ACCIÓN (ABRIR CHAT INTERNO)
         binding.btnConfirmarSolicitud.setOnClickListener(v -> {
-            Toast.makeText(this, "¡Iniciando contacto seguro!", Toast.LENGTH_SHORT).show();
-            // Ir al historial para ver el servicio en curso
-            startActivity(new Intent(this, HistorialActivity.class));
-            finish();
+            Intent intent = new Intent(this, ChatActivity.class);
+            // Pasamos los datos al chat para que sepa con quién hablamos
+            intent.putExtra("TECH_NAME", nombre);
+            intent.putExtra("TECH_IMAGE", imagenKey);
+            startActivity(intent);
         });
 
         // Botón atrás

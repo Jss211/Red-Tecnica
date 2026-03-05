@@ -4,53 +4,66 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.redtecnica.databinding.ActivityHomeBinding; // Import del Binding generado
+import com.example.redtecnica.databinding.ActivityHomeBinding;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private ActivityHomeBinding binding; // 1. Declaración del Binding
+    private ActivityHomeBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // 2. Inicialización de ViewBinding (Esto quita los errores de 'binding')
+        // --- BUSCADOR INTELIGENTE ---
+        binding.etBuscador.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH ||
+                    actionId == android.view.inputmethod.EditorInfo.IME_ACTION_DONE) {
+
+                String busqueda = binding.etBuscador.getText().toString().trim();
+                if (!busqueda.isEmpty()) {
+                    // Reutilizamos el catálogo, enviando lo que el usuario escribió
+                    abrirCatalogo(busqueda, "electricista");
+                    binding.etBuscador.setText(""); // Limpiar la barra
+                }
+                return true;
+            }
+            return false;
+        });
+
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // --- NAVEGACIÓN DE LA BARRA INFERIOR ---
-
-        // Botón "Inicio" (Ya estamos aquí, solo refrescamos o mostramos mensaje)
         binding.navInicio.setOnClickListener(v -> {
             Toast.makeText(this, "Ya estás en el Inicio", Toast.LENGTH_SHORT).show();
         });
 
-        // Botón "Actividad" (Historial de solicitudes)
         binding.navActividad.setOnClickListener(v -> {
             Intent intent = new Intent(this, HistorialActivity.class);
             startActivity(intent);
-            overridePendingTransition(0, 0); // Navegación fluida sin parpadeo
+            overridePendingTransition(0, 0);
         });
 
-        // Botón "Perfil" (Ajustes de usuario)
         binding.navPerfil.setOnClickListener(v -> {
             Intent intent = new Intent(this, PerfilActivity.class);
             startActivity(intent);
             overridePendingTransition(0, 0);
         });
 
-        // --- ACCIONES DE TÉCNICOS (Dinámicas) ---
+        // --- CATEGORÍAS (LLEVAN AL CATÁLOGO) ---
+        binding.btnGasfitero.setOnClickListener(v -> abrirCatalogo("Gasfitería", "gasfitero"));
+        binding.btnElectricidad.setOnClickListener(v -> abrirCatalogo("Electricidad", "electricista"));
+        binding.btnCerrajeria.setOnClickListener(v -> abrirCatalogo("Cerrajería", "cerrajeria"));
+        binding.btnPintura.setOnClickListener(v -> abrirCatalogo("Instalador Drywall", "pintura"));
 
-        // Botón del Electricista (Carlos Mendoza)
+        // --- TÉCNICOS RECOMENDADOS EN INICIO ---
         binding.btnContact1.setOnClickListener(v -> {
             Intent intent = new Intent(this, DetalleServicioActivity.class);
-            // Pasamos los datos para que la siguiente pantalla sepa a quién mostrar
             intent.putExtra("TECH_NAME", "Carlos Mendoza");
             intent.putExtra("TECH_IMAGE", "electricista");
             startActivity(intent);
         });
 
-        // Botón del Gasfitero (Roberto Sánchez)
         binding.btnContact2.setOnClickListener(v -> {
             Intent intent = new Intent(this, DetalleServicioActivity.class);
             intent.putExtra("TECH_NAME", "Roberto Sánchez");
@@ -58,16 +71,21 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // --- EXTRAS DE SIMULACIÓN PROFESIONAL ---
-
-        // Icono de Ajustes (Engranaje)
+        // --- EXTRAS ---
         binding.btnSettings.setOnClickListener(v -> {
             Toast.makeText(this, "Ajustes: Configuración disponible en la v2.0", Toast.LENGTH_SHORT).show();
         });
 
-        // Card de búsqueda
         binding.searchCard.setOnClickListener(v -> {
-            Toast.makeText(this, "Buscando técnicos verificados cerca de Surco...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Buscando técnicos verificados...", Toast.LENGTH_SHORT).show();
+
+
         });
+    }
+    private void abrirCatalogo(String categoria, String imagen) {
+        Intent intent = new Intent(this, CatalogoActivity.class);
+        intent.putExtra("CATEGORIA", categoria);
+        intent.putExtra("IMAGEN", imagen);
+        startActivity(intent);
     }
 }
