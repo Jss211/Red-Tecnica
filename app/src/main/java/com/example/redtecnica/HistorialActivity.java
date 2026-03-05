@@ -1,6 +1,7 @@
 package com.example.redtecnica;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
@@ -33,10 +34,10 @@ public class HistorialActivity extends AppCompatActivity {
         // --- NAVEGACIÓN DE LA BARRA INFERIOR ---
         binding.navInicio.setOnClickListener(v -> {
             Intent intent = new Intent(this, HomeActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // Evita abrir múltiples pantallas apiladas
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
-            overridePendingTransition(0, 0); // Transición sin parpadeo
-            finish(); // Cierra el historial al salir
+            overridePendingTransition(0, 0);
+            finish();
         });
 
         binding.navActividad.setOnClickListener(v -> {
@@ -51,14 +52,12 @@ public class HistorialActivity extends AppCompatActivity {
         });
 
         // --- ABRIR GOOGLE MAPS ---
-        // Asegúrate de que en activity_historial.xml el TextView "Ver mapa >" tenga el id: android:id="@+id/btnVerMapa"
         binding.btnVerMapa.setOnClickListener(v -> {
-            // Coordenadas simuladas del técnico en camino por Surco
+            // Coordenadas simuladas del técnico en camino por Surco, Lima
             String coordenadas = "-12.1323,-76.9984";
             String nombreTecnico = "Carlos Mendoza (En camino)";
 
-            // Uri especial que abre la app de Google Maps con un marcador rojo
-            android.net.Uri gmmIntentUri = android.net.Uri.parse("geo:0,0?q=" + coordenadas + "(" + android.net.Uri.encode(nombreTecnico) + ")");
+            Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + coordenadas + "(" + Uri.encode(nombreTecnico) + ")");
             Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
             mapIntent.setPackage("com.google.android.apps.maps");
 
