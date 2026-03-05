@@ -20,18 +20,18 @@ public class HistorialActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
 
+        // Inicialización de ViewBinding para conectar con el XML
         binding = ActivityHistorialBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // Configuración de márgenes para evitar que la UI se oculte bajo las barras del sistema
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            if (insets != null) {
-                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            }
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        // --- NAVEGACIÓN DE LA BARRA INFERIOR ---
+        // 1. Lógica de Navegación de la Barra Inferior
         binding.navInicio.setOnClickListener(v -> {
             Intent intent = new Intent(this, HomeActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -51,12 +51,13 @@ public class HistorialActivity extends AppCompatActivity {
             finish();
         });
 
-        // --- ABRIR GOOGLE MAPS ---
+        // 2. Función para abrir el Mapa (ID: btnVerMapa)
         binding.btnVerMapa.setOnClickListener(v -> {
-            // Coordenadas simuladas del técnico en camino por Surco, Lima
+            // Coordenadas simuladas en Santiago de Surco
             String coordenadas = "-12.1323,-76.9984";
             String nombreTecnico = "Carlos Mendoza (En camino)";
 
+            // Creación del Intent para abrir Google Maps
             Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + coordenadas + "(" + Uri.encode(nombreTecnico) + ")");
             Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
             mapIntent.setPackage("com.google.android.apps.maps");

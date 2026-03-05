@@ -9,6 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RedTecnica">
+
+        <activity
+            android:name=".DetalleServicioActivity"
+            android:exported="false" />
         <activity
             android:name=".EditarPerfilActivity"
             android:exported="false" />
@@ -17,28 +21,30 @@
             android:exported="false" />
         <activity
             android:name=".CatalogoActivity"
-            android:exported="false" /> <!-- 🔹 Login (Pantalla principal) -->
+            android:exported="false" />
+
+        <!-- 🔹 Login (Pantalla principal) -->
         <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- 🔹 Registro -->
+        </activity>
+
         <activity
             android:name=".RegisterActivity"
-            android:exported="false" /> <!-- 🔹 Home -->
+            android:exported="false" />
         <activity
             android:name=".HomeActivity"
-            android:exported="false" /> <!-- 🔹 Perfil -->
+            android:exported="false" />
         <activity
             android:name=".PerfilActivity"
-            android:exported="false" /> <!-- 🔹 Historial -->
+            android:exported="false" />
         <activity
             android:name=".HistorialActivity"
-            android:exported="false" /> <!-- 🔹 Main (si aún la usas) -->
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />

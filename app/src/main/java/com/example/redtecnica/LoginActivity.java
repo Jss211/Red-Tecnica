@@ -21,9 +21,9 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        // COMPROBACIÓN: Si el usuario ya está logueado, lo mandamos al Home directamente
+        // COMPROBACIÓN: Si el usuario ya está logueado y verificado, lo mandamos al Home
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
+        if (currentUser != null && currentUser.isEmailVerified()) {
             irAlInicio();
         }
 
@@ -40,7 +40,13 @@ public class LoginActivity extends AppCompatActivity {
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {
-                            irAlInicio();
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            if (user != null && user.isEmailVerified()) {
+                                irAlInicio();
+                            } else {
+                                Toast.makeText(this, "Por favor verifica tu correo electrónico primero", Toast.LENGTH_LONG).show();
+                                mAuth.signOut();
+                            }
                         } else {
                             Toast.makeText(this, "Error: Revisa tus credenciales", Toast.LENGTH_SHORT).show();
                         }
@@ -48,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         // Botón para ir a Registrarse
-        binding.tvRegister.setOnClickListener(v -> {
+        binding.btnRegister.setOnClickListener(v -> {
             startActivity(new Intent(this, RegisterActivity.class));
         });
     }

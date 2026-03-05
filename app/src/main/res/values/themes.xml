@@ -2,8 +2,14 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.RedTecnica" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/fixzone_blue</item>
     </style>
 
     <style name="Theme.RedTecnica" parent="Base.Theme.RedTecnica" />
+
+    <!-- Estilo para imágenes circulares que faltaba -->
+    <style name="ShapeAppearance.FixZone.CircularImage" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>
