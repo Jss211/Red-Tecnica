@@ -10,7 +10,7 @@
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@color/fixzone_red"
+        android:background="@color/fixzone_blue"
         android:elevation="4dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -141,7 +141,7 @@
                         android:textColor="@color/white"
                         android:textSize="15sp"
                         android:textStyle="bold"
-                        app:backgroundTint="@color/fixzone_red"
+                        app:backgroundTint="@color/fixzone_blue"
                         app:cornerRadius="16dp" />
 
                 </LinearLayout>
@@ -236,7 +236,7 @@
                         android:textColor="@color/white"
                         android:textSize="15sp"
                         android:textStyle="bold"
-                        app:backgroundTint="@color/fixzone_red"
+                        app:backgroundTint="@color/fixzone_blue"
                         app:cornerRadius="16dp" />
 
                 </LinearLayout>

@@ -18,7 +18,7 @@
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:contentScrim="@color/fixzone_red"
+            app:contentScrim="@color/fixzone_blue"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:titleEnabled="false">
 
@@ -198,7 +198,7 @@
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:backgroundTint="@color/fixzone_red"
+                app:backgroundTint="@color/fixzone_blue"
                 app:cornerRadius="16dp"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

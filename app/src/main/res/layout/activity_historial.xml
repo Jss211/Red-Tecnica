@@ -427,7 +427,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:weightSum="3"
+            android:weightSum="4"
             android:gravity="center">
 
             <LinearLayout
@@ -452,8 +452,8 @@
                 android:gravity="center"
                 android:clickable="true"
                 android:focusable="true">
-                <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_recent_history" app:tint="@color/fixzone_red"/>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Actividad" android:textColor="@color/fixzone_red" android:textStyle="bold" android:textSize="12sp" android:layout_marginTop="4dp"/>
+                <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_recent_history" app:tint="@color/fixzone_blue"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Actividad" android:textColor="@color/fixzone_blue" android:textStyle="bold" android:textSize="12sp" android:layout_marginTop="4dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -467,6 +467,19 @@
                 android:focusable="true">
                 <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_myplaces" app:tint="@color/gray_hint"/>
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Perfil" android:textColor="@color/gray_hint" android:textSize="12sp" android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/navAjustes"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true">
+                <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_preferences" app:tint="@color/gray_hint"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ajustes" android:textColor="@color/gray_hint" android:textSize="12sp" android:layout_marginTop="4dp"/>
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

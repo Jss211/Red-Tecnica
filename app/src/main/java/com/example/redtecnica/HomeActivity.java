@@ -24,11 +24,12 @@ public class HomeActivity extends AppCompatActivity {
         configurarCategorias();
         configurarContactos();
 
-        // Otros botones
-        binding.btnSettings.setOnClickListener(v -> {
-            Toast.makeText(this, "Ajustes: Configuración disponible en la v2.0", Toast.LENGTH_SHORT).show();
+        // Botón de notificaciones
+        binding.btnNotificaciones.setOnClickListener(v -> {
+            startActivity(new Intent(this, NotificacionesActivity.class));
         });
 
+        // Otros botones
         binding.searchCard.setOnClickListener(v -> {
             Toast.makeText(this, "Buscando técnicos verificados...", Toast.LENGTH_SHORT).show();
         });
@@ -42,7 +43,7 @@ public class HomeActivity extends AppCompatActivity {
                 String busqueda = binding.etBuscador.getText().toString().trim();
                 if (!busqueda.isEmpty()) {
                     abrirCatalogo(busqueda, "electricista");
-                    binding.etBuscador.setText(""); 
+                    binding.etBuscador.setText("");
                 }
                 return true;
             }
@@ -62,6 +63,11 @@ public class HomeActivity extends AppCompatActivity {
 
         binding.navPerfil.setOnClickListener(v -> {
             startActivity(new Intent(this, PerfilActivity.class));
+            overridePendingTransition(0, 0);
+        });
+
+        binding.navAjustes.setOnClickListener(v -> {
+            startActivity(new Intent(this, AjustesActivity.class));
             overridePendingTransition(0, 0);
         });
     }

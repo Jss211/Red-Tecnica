@@ -46,6 +46,21 @@
             android:name=".HistorialActivity"
             android:exported="false" />
         <activity
+            android:name=".AjustesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NotificacionesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ReportarTecnicoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TerminosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PrivacidadActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
     </application>

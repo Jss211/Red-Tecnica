@@ -51,6 +51,13 @@ public class HistorialActivity extends AppCompatActivity {
             finish();
         });
 
+        binding.navAjustes.setOnClickListener(v -> {
+            Intent intent = new Intent(this, AjustesActivity.class);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+            finish();
+        });
+
         // 2. Función para abrir el Mapa (ID: btnVerMapa)
         binding.btnVerMapa.setOnClickListener(v -> {
             // Coordenadas simuladas en Santiago de Surco

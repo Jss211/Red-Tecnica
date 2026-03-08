@@ -81,6 +81,14 @@ public class PerfilActivity extends AppCompatActivity {
         binding.navPerfil.setOnClickListener(v -> {
             Toast.makeText(this, "Ya estás en tu Perfil", Toast.LENGTH_SHORT).show();
         });
+
+        binding.navAjustes.setOnClickListener(v -> {
+            Intent intent = new Intent(this, AjustesActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+            finish();
+        });
     }
 
     // Usamos onResume para que los datos se actualicen apenas regresamos de EditarPerfilActivity
