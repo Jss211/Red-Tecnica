@@ -30,7 +30,6 @@ public class PerfilActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // APLICAR TEMA ANTES DE SUPER.ONCREATE
         SharedPreferences prefs = getSharedPreferences("FixZonePrefs", MODE_PRIVATE);
         boolean isDarkMode = prefs.getBoolean("dark_mode", false);
 
@@ -42,8 +41,6 @@ public class PerfilActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-
-        // Registrar el receiver para escuchar cambios de tema
         registerReceiver(themeChangeReceiver, new IntentFilter("THEME_CHANGED"), Context.RECEIVER_NOT_EXPORTED);
 
         binding = ActivityPerfilBinding.inflate(getLayoutInflater());
@@ -62,21 +59,10 @@ public class PerfilActivity extends AppCompatActivity {
             binding.tvEmail.setText(currentUser.getEmail());
         }
 
-        // --- ABRIR PANTALLA DE EDITAR PERFIL ---
-        binding.btnEditarPerfil.setOnClickListener(v -> {
-            Intent intent = new Intent(this, EditarPerfilActivity.class);
-            startActivity(intent);
-        });
+        binding.btnEditarPerfil.setOnClickListener(v -> startActivity(new Intent(this, EditarPerfilActivity.class)));
+        binding.btnDirecciones.setOnClickListener(v -> Toast.makeText(this, "Las direcciones se configuran en Editar Perfil", Toast.LENGTH_SHORT).show());
+        binding.btnSoporte.setOnClickListener(v -> Toast.makeText(this, "Contactando a soporte...", Toast.LENGTH_SHORT).show());
 
-        binding.btnDirecciones.setOnClickListener(v -> {
-            Toast.makeText(this, "Las direcciones se configuran en Editar Perfil", Toast.LENGTH_SHORT).show();
-        });
-
-        binding.btnSoporte.setOnClickListener(v -> {
-            Toast.makeText(this, "Contactando a soporte...", Toast.LENGTH_SHORT).show();
-        });
-
-        // --- BOTÓN CERRAR SESIÓN ---
         binding.btnLogout.setOnClickListener(v -> {
             mAuth.signOut();
             Intent intent = new Intent(this, LoginActivity.class);
@@ -85,7 +71,6 @@ public class PerfilActivity extends AppCompatActivity {
             finish();
         });
 
-        // --- NAVEGACIÓN ---
         binding.navInicio.setOnClickListener(v -> {
             Intent intent = new Intent(this, HomeActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -102,10 +87,7 @@ public class PerfilActivity extends AppCompatActivity {
             finish();
         });
 
-        binding.navPerfil.setOnClickListener(v -> {
-            Toast.makeText(this, "Ya estás en tu Perfil", Toast.LENGTH_SHORT).show();
-        });
-
+        binding.navPerfil.setOnClickListener(v -> Toast.makeText(this, "Ya estás en tu Perfil", Toast.LENGTH_SHORT).show());
         binding.navAjustes.setOnClickListener(v -> {
             Intent intent = new Intent(this, AjustesActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -115,18 +97,27 @@ public class PerfilActivity extends AppCompatActivity {
         });
     }
 
-    // Usamos onResume para que los datos se actualicen apenas regresamos de EditarPerfilActivity
     @Override
     protected void onResume() {
         super.onResume();
-        // Cargar el nombre que el usuario guardó en EditarPerfilActivity
+
         SharedPreferences prefs = getSharedPreferences("MisDatosPerfil", MODE_PRIVATE);
         String nombreGuardado = prefs.getString("nombre", "");
+        String uriImagen = prefs.getString("imagen_perfil", "");
 
-        if (!nombreGuardado.isEmpty()) {
+        if (!nombreGuardado.trim().isEmpty()) {
             binding.tvName.setText(nombreGuardado);
         } else {
             binding.tvName.setText("Usuario FixZone");
+        }
+
+        if (!uriImagen.isEmpty()) {
+            try {
+                binding.imgProfile.setImageURI(android.net.Uri.parse(uriImagen));
+            } catch (Exception e) {
+                // Previene el crasheo si se borró la foto
+                binding.imgProfile.setImageResource(R.drawable.avatar);
+            }
         }
     }
 

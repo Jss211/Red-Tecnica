@@ -5,30 +5,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F7FA">
+    android:background="@color/background"> <com.google.android.material.appbar.AppBarLayout
+    android:id="@+id/appBarLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/card_background" app:elevation="4dp"
+    app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
+    <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:elevation="4dp"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="60dp">
 
-        <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="60dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Mis Solicitudes"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-        </androidx.appcompat.widget.Toolbar>
-    </com.google.android.material.appbar.AppBarLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Mis Solicitudes"
+            android:textColor="@color/text_primary" android:textSize="20sp"
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.Toolbar>
+</com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
         android:id="@+id/tabsLayout"
@@ -61,7 +57,7 @@
             android:layout_height="40dp"
             android:layout_weight="1"
             android:layout_marginStart="8dp"
-            app:cardBackgroundColor="#E0E0E0"
+            app:cardBackgroundColor="@color/surface"
             app:cardCornerRadius="20dp"
             app:strokeWidth="0dp">
             <TextView
@@ -69,8 +65,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Historial"
-                android:textColor="@color/gray_hint"
-                android:textStyle="bold"/>
+                android:textColor="@color/text_secondary" android:textStyle="bold"/>
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 
@@ -107,8 +102,7 @@
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="6dp"
                 android:text="Electricidad"
-                android:textColor="@color/gray_hint"
-                android:textSize="12sp"/>
+                android:textColor="@color/text_secondary" android:textSize="12sp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -118,8 +112,7 @@
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="6dp"
                 android:text="Gasfitería"
-                android:textColor="@color/gray_hint"
-                android:textSize="12sp"/>
+                android:textColor="@color/text_secondary" android:textSize="12sp"/>
         </LinearLayout>
     </HorizontalScrollView>
 
@@ -143,8 +136,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="24dp"
+                app:cardBackgroundColor="@color/card_background" app:cardCornerRadius="24dp"
                 app:cardElevation="6dp"
                 app:strokeWidth="0dp">
 
@@ -164,8 +156,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Hoy, 10:30 AM"
-                            android:textColor="@color/gray_hint"
-                            android:textSize="12sp"
+                            android:textColor="@color/text_secondary" android:textSize="12sp"
                             android:textStyle="bold"/>
 
                         <Space android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"/>
@@ -209,15 +200,13 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Reparación Eléctrica"
-                                android:textColor="@color/black"
-                                android:textStyle="bold"
+                                android:textColor="@color/text_primary" android:textStyle="bold"
                                 android:textSize="18sp"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Carlos Mendoza • A 5 mins"
-                                android:textColor="@color/gray_hint"
-                                android:textSize="14sp"/>
+                                android:textColor="@color/text_secondary" android:textSize="14sp"/>
                         </LinearLayout>
                     </LinearLayout>
 
@@ -242,10 +231,8 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:layout_marginTop="4dp">
-                        <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Aceptado" android:textSize="10sp" android:textColor="@color/gray_hint"/>
-                        <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="En camino" android:textSize="10sp" android:textColor="#F57C00" android:textStyle="bold" android:gravity="center"/>
-                        <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Trabajando" android:textSize="10sp" android:textColor="@color/gray_hint" android:gravity="end"/>
-                    </LinearLayout>
+                        <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Aceptado" android:textSize="10sp" android:textColor="@color/text_secondary"/> <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="En camino" android:textSize="10sp" android:textColor="#F57C00" android:textStyle="bold" android:gravity="center"/>
+                        <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Trabajando" android:textSize="10sp" android:textColor="@color/text_secondary" android:gravity="end"/> </LinearLayout>
 
                     <com.google.android.material.button.MaterialButton
                         android:layout_width="match_parent"
@@ -264,8 +251,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="24dp"
+                app:cardBackgroundColor="@color/card_background" app:cardCornerRadius="24dp"
                 app:cardElevation="6dp"
                 app:strokeWidth="0dp">
 
@@ -299,8 +285,7 @@
                         </com.google.android.material.card.MaterialCardView>
 
                         <Space android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="S/ 45.00" android:textColor="@color/black" android:textStyle="bold" android:textSize="16sp"/>
-                    </LinearLayout>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="S/ 45.00" android:textColor="@color/text_primary" android:textStyle="bold" android:textSize="16sp"/> </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -323,9 +308,7 @@
                             android:layout_weight="1"
                             android:orientation="vertical"
                             android:layout_marginStart="16dp">
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Fuga de Agua" android:textColor="@color/black" android:textStyle="bold" android:textSize="16sp"/>
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Roberto Sánchez" android:textColor="@color/gray_hint" android:textSize="14sp"/>
-                        </LinearLayout>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Fuga de Agua" android:textColor="@color/text_primary" android:textStyle="bold" android:textSize="16sp"/> <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Roberto Sánchez" android:textColor="@color/text_secondary" android:textSize="14sp"/> </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
@@ -353,8 +336,7 @@
                             android:layout_weight="1"
                             android:layout_marginEnd="6dp"
                             android:text="Ver recibo"
-                            android:textColor="@color/black"
-                            app:strokeColor="#E0E0E0"
+                            android:textColor="@color/text_primary" app:strokeColor="#E0E0E0"
                             app:cornerRadius="12dp"/>
 
                         <com.google.android.material.button.MaterialButton
@@ -416,8 +398,7 @@
         android:id="@+id/bottomNavigationBar"
         android:layout_width="0dp"
         android:layout_height="70dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardElevation="16dp"
+        app:cardBackgroundColor="@color/card_background" app:cardElevation="16dp"
         app:strokeWidth="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -439,9 +420,7 @@
                 android:gravity="center"
                 android:clickable="true"
                 android:focusable="true">
-                <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_compass" app:tint="@color/gray_hint"/>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Inicio" android:textColor="@color/gray_hint" android:textSize="12sp" android:layout_marginTop="4dp"/>
-            </LinearLayout>
+                <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_compass" app:tint="@color/text_secondary"/> <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Inicio" android:textColor="@color/text_secondary" android:textSize="12sp" android:layout_marginTop="4dp"/> </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/navActividad"
@@ -465,9 +444,7 @@
                 android:gravity="center"
                 android:clickable="true"
                 android:focusable="true">
-                <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_myplaces" app:tint="@color/gray_hint"/>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Perfil" android:textColor="@color/gray_hint" android:textSize="12sp" android:layout_marginTop="4dp"/>
-            </LinearLayout>
+                <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_myplaces" app:tint="@color/text_secondary"/> <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Perfil" android:textColor="@color/text_secondary" android:textSize="12sp" android:layout_marginTop="4dp"/> </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/navAjustes"
@@ -478,9 +455,7 @@
                 android:gravity="center"
                 android:clickable="true"
                 android:focusable="true">
-                <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_preferences" app:tint="@color/gray_hint"/>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ajustes" android:textColor="@color/gray_hint" android:textSize="12sp" android:layout_marginTop="4dp"/>
-            </LinearLayout>
+                <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_preferences" app:tint="@color/text_secondary"/> <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ajustes" android:textColor="@color/text_secondary" android:textSize="12sp" android:layout_marginTop="4dp"/> </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 

@@ -1,7 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.RedTecnica" parent="Theme.Material3.Light.NoActionBar">
-        <!-- Customize your light theme here. -->
+    <style name="Base.Theme.RedTecnica" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/fixzone_blue</item>
         <item name="android:statusBarColor">?attr/colorPrimary</item>
         <item name="android:windowBackground">@color/background</item>

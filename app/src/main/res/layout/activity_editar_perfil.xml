@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8F9FA">
+    android:background="@color/background">
 
     <LinearLayout
         android:id="@+id/headerEdit"
@@ -49,19 +49,48 @@
             android:orientation="vertical"
             android:padding="24dp">
 
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="32dp"
-                android:src="@drawable/avatar" />
+                android:layout_marginBottom="32dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/ivEditProfilePic"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/avatar"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearance.FixZone.CircularImage" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btnCargarFoto"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="bottom|end"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardBackgroundColor="@color/fixzone_blue"
+                    app:cardCornerRadius="20dp"
+                    app:strokeColor="@color/background"
+                    app:strokeWidth="3dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="8dp"
+                        android:src="@android:drawable/ic_menu_camera"
+                        app:tint="@color/white" />
+                </com.google.android.material.card.MaterialCardView>
+            </FrameLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nombre Completo"
-                android:textColor="@color/black"
+                android:textColor="@color/text_primary"
                 android:textStyle="bold" />
 
             <EditText
@@ -71,17 +100,18 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/button_black_rounded"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/card_background"
                 android:elevation="2dp"
-                android:hint="Ej. Christian Pérez"
+                android:hint="Ej. Usuario FixZone"
                 android:paddingHorizontal="16dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_secondary" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Teléfono / WhatsApp"
-                android:textColor="@color/black"
+                android:textColor="@color/text_primary"
                 android:textStyle="bold" />
 
             <EditText
@@ -91,18 +121,19 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/button_black_rounded"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/card_background"
                 android:elevation="2dp"
                 android:hint="Ej. 999 888 777"
                 android:inputType="phone"
                 android:paddingHorizontal="16dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_secondary" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Dirección predeterminada"
-                android:textColor="@color/black"
+                android:textColor="@color/text_primary"
                 android:textStyle="bold" />
 
             <EditText
@@ -112,11 +143,12 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="40dp"
                 android:background="@drawable/button_black_rounded"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/card_background"
                 android:elevation="2dp"
                 android:hint="Ej. Av. Las Flores 123, Surco"
                 android:paddingHorizontal="16dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_secondary" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnGuardarPerfil"

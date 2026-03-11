@@ -22,7 +22,6 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // APLICAR TEMA ANTES DE SUPER.ONCREATE
         android.content.SharedPreferences prefs = getSharedPreferences("FixZonePrefs", MODE_PRIVATE);
         boolean isDarkMode = prefs.getBoolean("dark_mode", false);
 
@@ -33,29 +32,52 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         super.onCreate(savedInstanceState);
-
-        // Registrar el receiver para escuchar cambios de tema
         registerReceiver(themeChangeReceiver, new IntentFilter("THEME_CHANGED"), Context.RECEIVER_NOT_EXPORTED);
 
-        // 1. INICIALIZAR EL BINDING PRIMERO (Esto era lo que faltaba arriba)
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // 2. AHORA SÍ CONFIGURAR LOS ELEMENTOS
         configurarBuscador();
         configurarNavegacion();
         configurarCategorias();
         configurarContactos();
 
-        // Botón de notificaciones
         binding.btnNotificaciones.setOnClickListener(v -> {
             startActivity(new Intent(this, NotificacionesActivity.class));
         });
 
-        // Otros botones
         binding.searchCard.setOnClickListener(v -> {
             Toast.makeText(this, "Buscando técnicos verificados...", Toast.LENGTH_SHORT).show();
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        android.content.SharedPreferences prefs = getSharedPreferences("MisDatosPerfil", MODE_PRIVATE);
+        String nombre = prefs.getString("nombre", "");
+        String uriImagen = prefs.getString("imagen_perfil", "");
+
+        try {
+            if (!nombre.trim().isEmpty()) {
+                String primerNombre = nombre.trim().split(" ")[0];
+                binding.tvWelcome.setText("¡Hola " + primerNombre + "!");
+            } else {
+                binding.tvWelcome.setText("¡Hola!");
+            }
+        } catch (Exception e) {
+            binding.tvWelcome.setText("¡Hola!");
+        }
+
+        if (!uriImagen.isEmpty()) {
+            try {
+                binding.imgAvatarHome.setImageURI(android.net.Uri.parse(uriImagen));
+            } catch (Exception e) {
+                // Si la imagen falla, ponemos el avatar por defecto pero la app NO se cierra
+                binding.imgAvatarHome.setImageResource(R.drawable.avatar);
+            }
+        }
     }
 
     private void configurarBuscador() {
@@ -75,20 +97,15 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void configurarNavegacion() {
-        binding.navInicio.setOnClickListener(v -> {
-            Toast.makeText(this, "Ya estás en el Inicio", Toast.LENGTH_SHORT).show();
-        });
-
+        binding.navInicio.setOnClickListener(v -> Toast.makeText(this, "Ya estás en el Inicio", Toast.LENGTH_SHORT).show());
         binding.navActividad.setOnClickListener(v -> {
             startActivity(new Intent(this, HistorialActivity.class));
             overridePendingTransition(0, 0);
         });
-
         binding.navPerfil.setOnClickListener(v -> {
             startActivity(new Intent(this, PerfilActivity.class));
             overridePendingTransition(0, 0);
         });
-
         binding.navAjustes.setOnClickListener(v -> {
             startActivity(new Intent(this, AjustesActivity.class));
             overridePendingTransition(0, 0);
