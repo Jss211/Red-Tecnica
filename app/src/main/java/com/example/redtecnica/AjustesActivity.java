@@ -1,6 +1,9 @@
 package com.example.redtecnica;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -14,17 +17,40 @@ public class AjustesActivity extends AppCompatActivity {
     private SharedPreferences prefs;
     private boolean isDarkMode = false;
 
+    private BroadcastReceiver themeChangeReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            recreate();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // APLICAR TEMA ANTES DE SUPER.ONCREATE
+        prefs = getSharedPreferences("FixZonePrefs", MODE_PRIVATE);
+        isDarkMode = prefs.getBoolean("dark_mode", false);
+
+        if (isDarkMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+
         super.onCreate(savedInstanceState);
         binding = ActivityAjustesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        prefs = getSharedPreferences("FixZonePrefs", MODE_PRIVATE);
-        isDarkMode = prefs.getBoolean("dark_mode", false);
+        // Registrar el receiver para escuchar cambios de tema
+        registerReceiver(themeChangeReceiver, new IntentFilter("THEME_CHANGED"), Context.RECEIVER_NOT_EXPORTED);
 
         configurarUI();
         configurarNavegacion();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(themeChangeReceiver);
     }
 
     private void configurarUI() {
@@ -63,8 +89,10 @@ public class AjustesActivity extends AppCompatActivity {
         isDarkMode = !isDarkMode;
         binding.switchDarkMode.setChecked(isDarkMode);
 
+        // Guardar preferencia
         prefs.edit().putBoolean("dark_mode", isDarkMode).apply();
 
+        // Aplicar tema inmediatamente
         if (isDarkMode) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else {
@@ -72,6 +100,13 @@ public class AjustesActivity extends AppCompatActivity {
         }
 
         actualizarTextoModo();
+
+        // Enviar broadcast para que todas las actividades se recreen
+        Intent intent = new Intent("THEME_CHANGED");
+        sendBroadcast(intent);
+
+        // Recrear esta actividad para aplicar el cambio inmediatamente
+        recreate();
     }
 
     private void actualizarTextoModo() {

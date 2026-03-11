@@ -1,11 +1,22 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.RedTecnica" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.RedTecnica" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/fixzone_blue</item>
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/text_primary</item>
     </style>
 
     <style name="Theme.RedTecnica" parent="Base.Theme.RedTecnica" />
+
+    <!-- Tema para Splash Screen sin ActionBar -->
+    <style name="Theme.RedTecnica.NoActionBar" parent="Theme.RedTecnica">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
 
     <!-- Estilo para imágenes circulares que faltaba -->
     <style name="ShapeAppearance.FixZone.CircularImage" parent="ShapeAppearance.MaterialComponents.SmallComponent">

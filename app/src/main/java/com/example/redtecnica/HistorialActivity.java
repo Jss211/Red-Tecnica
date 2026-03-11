@@ -1,6 +1,9 @@
 package com.example.redtecnica;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -15,10 +18,30 @@ public class HistorialActivity extends AppCompatActivity {
 
     private ActivityHistorialBinding binding;
 
+    private BroadcastReceiver themeChangeReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            recreate();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // APLICAR TEMA ANTES DE SUPER.ONCREATE
+        android.content.SharedPreferences prefs = getSharedPreferences("FixZonePrefs", MODE_PRIVATE);
+        boolean isDarkMode = prefs.getBoolean("dark_mode", false);
+
+        if (isDarkMode) {
+            androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO);
+        }
+
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+
+        // Registrar el receiver para escuchar cambios de tema
+        registerReceiver(themeChangeReceiver, new IntentFilter("THEME_CHANGED"), Context.RECEIVER_NOT_EXPORTED);
 
         // Inicialización de ViewBinding para conectar con el XML
         binding = ActivityHistorialBinding.inflate(getLayoutInflater());
@@ -75,5 +98,11 @@ public class HistorialActivity extends AppCompatActivity {
                 Toast.makeText(this, "No tienes Google Maps instalado", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(themeChangeReceiver);
     }
 }

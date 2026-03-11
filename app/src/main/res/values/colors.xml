@@ -18,4 +18,16 @@
 
     <color name="notif_no_leida">#E3F2FD</color>
 
+    <!-- Colores para modo oscuro -->
+    <color name="dark_background">#121212</color>
+    <color name="dark_surface">#1E1E1E</color>
+    <color name="dark_card">#2C2C2C</color>
+
+    <!-- Colores dinámicos que cambian según el tema (modo claro) -->
+    <color name="background">#F8F9FA</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="text_primary">#000000</color>
+    <color name="text_secondary">#757575</color>
+
 </resources>

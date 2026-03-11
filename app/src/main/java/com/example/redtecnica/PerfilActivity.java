@@ -1,6 +1,9 @@
 package com.example.redtecnica;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -18,10 +21,31 @@ public class PerfilActivity extends AppCompatActivity {
     private ActivityPerfilBinding binding;
     private FirebaseAuth mAuth;
 
+    private BroadcastReceiver themeChangeReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            recreate();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // APLICAR TEMA ANTES DE SUPER.ONCREATE
+        SharedPreferences prefs = getSharedPreferences("FixZonePrefs", MODE_PRIVATE);
+        boolean isDarkMode = prefs.getBoolean("dark_mode", false);
+
+        if (isDarkMode) {
+            androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO);
+        }
+
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+
+        // Registrar el receiver para escuchar cambios de tema
+        registerReceiver(themeChangeReceiver, new IntentFilter("THEME_CHANGED"), Context.RECEIVER_NOT_EXPORTED);
+
         binding = ActivityPerfilBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -104,5 +128,11 @@ public class PerfilActivity extends AppCompatActivity {
         } else {
             binding.tvName.setText("Usuario FixZone");
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(themeChangeReceiver);
     }
 }

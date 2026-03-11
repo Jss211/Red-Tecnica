@@ -1,6 +1,9 @@
 package com.example.redtecnica;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,9 +13,29 @@ public class HomeActivity extends AppCompatActivity {
 
     private ActivityHomeBinding binding;
 
+    private BroadcastReceiver themeChangeReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            recreate();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // APLICAR TEMA ANTES DE SUPER.ONCREATE
+        android.content.SharedPreferences prefs = getSharedPreferences("FixZonePrefs", MODE_PRIVATE);
+        boolean isDarkMode = prefs.getBoolean("dark_mode", false);
+
+        if (isDarkMode) {
+            androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO);
+        }
+
         super.onCreate(savedInstanceState);
+
+        // Registrar el receiver para escuchar cambios de tema
+        registerReceiver(themeChangeReceiver, new IntentFilter("THEME_CHANGED"), Context.RECEIVER_NOT_EXPORTED);
 
         // 1. INICIALIZAR EL BINDING PRIMERO (Esto era lo que faltaba arriba)
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
@@ -100,5 +123,11 @@ public class HomeActivity extends AppCompatActivity {
         intent.putExtra("CATEGORIA", categoria);
         intent.putExtra("IMAGEN", imagen);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(themeChangeReceiver);
     }
 }

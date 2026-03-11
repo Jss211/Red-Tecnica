@@ -3,6 +3,7 @@
     package="com.example.redtecnica">
 
     <application
+        android:name=".FixZoneApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Red Tecnica"
@@ -23,7 +24,7 @@
             android:name=".CatalogoActivity"
             android:exported="false" />
 
-        <!-- 🔹 Login (Pantalla principal) -->
+        <!-- Login (Pantalla principal) -->
         <activity
             android:name=".LoginActivity"
             android:exported="true">
@@ -32,6 +33,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Splash Screen (pantalla de carga después de login) -->
+        <activity
+            android:name=".SplashActivity"
+            android:exported="false"
+            android:theme="@style/Theme.RedTecnica.NoActionBar" />
 
         <activity
             android:name=".RegisterActivity"
